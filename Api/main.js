@@ -68,7 +68,7 @@ const signIn = async (req, res) => {
       res.status(401).send({ response: "Access Denied, user not found" });
     }
   } catch (error) {
-    res.status(503).send({ response: "Server Error" });
+    res.status(503).send({ response: "Internal server error" });
   }
 };
 
