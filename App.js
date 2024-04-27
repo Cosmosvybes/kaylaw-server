@@ -1,6 +1,7 @@
 const express = require("express");
 const { config } = require("dotenv");
 const { uploader } = require("./Middleware/uploader");
+const path = require("path");
 const {
   createPost,
   getPosts,
@@ -13,7 +14,11 @@ config();
 const port = process.env.PORT;
 const app = express();
 app.use(urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "dist")));
 app.use(express.json());
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 app.post("/api/create", uploader(), createPost);
 app.delete("/api/delete", deleteActivityPost);
 app.get("/api/posts", getPosts);
