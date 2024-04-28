@@ -32,6 +32,9 @@ app.get("/activities", (req, res) => {
 app.get("/home", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
+app.get("/read/post/:id", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
 app.get("/events", (req, res) => {
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
