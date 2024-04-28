@@ -57,12 +57,11 @@ const signIn = async (req, res) => {
     const user = await getAdmin(email);
     if (user) {
       if (user.password != password) {
-        res.status(200).send({ response: "Invalid credientials" });
+        res.status(403).send({ response: "Invalid credientials" });
       } else {
         const token = jwt.sign({ payload: email }, process.env.api_secret);
-        res.cookie("userToken", token, { maxAge: 36000000, path: "/api/" });
-        res.status(200).send({ response: `Welcome ${email}`, userToken });
-        node;
+        res.cookie("userToken", token, { maxAge: 360000000, path: "/api/" });
+        res.redirect(301, "/api/profile");
       }
     } else {
       res.status(401).send({ response: "Access Denied, user not found" });
@@ -71,5 +70,10 @@ const signIn = async (req, res) => {
     res.status(503).send({ response: "Internal server error" });
   }
 };
+const Profile = async (req, res) => {
+  const email = req.user.payload;
+  const user = await getAdmin(email);
+  res.status(200).send({ user: user, isAuthenticated: true });
+};
 
-module.exports = { createPost, getPosts, deleteActivityPost, signIn };
+module.exports = { createPost, getPosts, deleteActivityPost, signIn, Profile };
