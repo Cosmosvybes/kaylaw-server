@@ -1,7 +1,9 @@
 const jwt = require("jsonwebtoken");
 
 const Authenticator = (req, res, next) => {
-  const token = req.cookies.userToken;
+  const tkHeader = decodeURIComponent(req.headers["Authorization"]);
+  const token = tkHeader.split(" ")[1];
+
   if (!token) {
     res.send({ response: "sign in to access this page" });
   }

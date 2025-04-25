@@ -37,18 +37,18 @@ app.post("/api/create", Authenticator, uploader(), createPost);
 app.delete("/api/delete", Authenticator, deleteActivityPost);
 app.get("/api/posts", getPosts);
 app.post("/api/sign-in", signIn);
-app.get("/activities", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
-app.get("/home", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
-app.get("/read/post/:id", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
-app.get("/events", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
-});
+// app.get("/activities", (req, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "index.html"));
+// });
+// app.get("/home", (req, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "index.html"));
+// });
+// app.get("/read/post/:id", (req, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "index.html"));
+// });
+// app.get("/events", (req, res) => {
+//   res.sendFile(path.join(__dirname, "dist", "index.html"));
+// });
 app.get("/api/profile", Authenticator, Profile);
 
 app.listen(port, () => console.log(`Server running on ${port}`));
