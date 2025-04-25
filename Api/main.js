@@ -63,7 +63,6 @@ const signIn = async (req, res) => {
         const token = jwt.sign({ payload: email }, process.env.api_secret);
         res.cookie("userToken", token, { maxAge: 360000000, path: "/api/" });
         res.status(200).send({ response: "Sign in successful", token });
-        // res.redirect(301, "/api/profile");
       }
     } else {
       res.status(401).send({ response: "Access Denied, user not found" });
